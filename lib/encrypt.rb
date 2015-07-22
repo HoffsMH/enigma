@@ -16,9 +16,7 @@ class Encryptor
     @output = @arggen.gen_output(ARGV[1])
     @key = @arggen.gen_key(ARGV[2])
     @date = @arggen.gen_date(ARGV[3])
-    args_status = @argchecker.check_io(@messsage, @output, @key, @date)
-    @key = @argchecker.check_key(@key)
-    @date = @argchecker.check_date(@date)
+    args_status = check_args
     if !args_status
       return false
     else
@@ -26,9 +24,15 @@ class Encryptor
       puts "using message file: #{@message}"
       puts "using output file: #{@output}"
       puts "using key: #{@key}"
-      puts "using date: #{@date}"
-      
+      puts "using date: #{@date}"       
     end
+    
+  end
+  
+  def check_args     
+    @key = @argchecker.check_key(@key)
+    @date = @argchecker.check_date(@date)
+    @argchecker.check_io(@messsage, @output)     
   end
   
   

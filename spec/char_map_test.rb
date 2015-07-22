@@ -6,7 +6,7 @@ describe CharMap do
     it "has a default character array if no arguments are given" do
       char_map = CharMap.new
       
-      expected = ('a'..'z').to_a + (0..9).to_a + [" "] + ["."] + [","] 
+      expected = ('A'..'Z').to_a + ('a'..'z').to_a + (0..9).to_a + [" "] + ["."] + [","] + ["\n"]
       result = char_map.array
       
       assert_equal(expected, result)
