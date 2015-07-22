@@ -8,7 +8,6 @@ class Encryptor
   attr_accessor :message, :key, :date, :keygen
   def initialize     
     @arggen = ArgGen.new
-    @keylength = 5
   end
   def encrypt
     message = @arggen.gen_message(ARGV[0])

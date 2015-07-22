@@ -52,5 +52,37 @@ describe ArgGen do
     end
     
   end
+  
+  describe ".gen_key" do
+    it "returns false invalid key is given" do
+      arggen = ArgGen.new
+      
+      expected = false
+      result = arggen.gen_key("someboguskey")
+      
+      assert_equal(expected, result)       
+    end
+    
+    it "returns the key when a valid key is given" do
+      arggen = ArgGen.new
+      
+      result = arggen.gen_key('53351')
+      expected = 53351
+      
+      assert_equal(expected, result)
+    end
+    
+    it "returns a valid key when no key is given" do
+      arggen = ArgGen.new
+      arggen.keygen.stub :gen, 53342 do
+        
+      result = arggen.gen_key(nil)
+      expected = 53342  
+        
+        assert_equal(expected, result)
+      end
+    end
+    
+  end
 
 end

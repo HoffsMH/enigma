@@ -3,8 +3,11 @@ require './lib/keygen'
 require './lib/dategen'
 
 class ArgGen
+  attr_accessor :keygen
   def initialize
     @loader = Loader.new
+    @keygen = KeyGen.new
+    @keylength = 5
   end
   def gen_message(cli_arg)
     if cli_arg == nil       
@@ -37,8 +40,6 @@ class ArgGen
   end
   
   def gen_key(cli_arg)
-    puts "hiiiii"
-    puts  @keylength
     if cli_arg == nil
       @keygen.gen(@keylength)
     else       
