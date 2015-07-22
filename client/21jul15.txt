@@ -1,0 +1,9 @@
+new spec from client: 
+  
+  uppercaseace
+  lowercase
+  numbers
+  space
+  comma
+  period
+  \n
