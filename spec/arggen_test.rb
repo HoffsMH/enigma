@@ -1,5 +1,6 @@
 require './spec/spec_helper.rb'
 require './lib/arggen.rb'
+require './lib/dategen.rb'
 
 describe ArgGen do
   describe ".gen_message" do
@@ -33,15 +34,6 @@ describe ArgGen do
     
   end
   describe ".gen_output" do
-    it "returns false if path provided is not legitimate" do
-      arggen = ArgGen.new
-        
-      expected = false
-      result = arggen.gen_output("somefilethatdoesntexist")
-      
-      assert_equal(expected, result)
-      
-    end
     it "returns a file handle if the path provided is legitimate" do
       arggen = ArgGen.new
       
@@ -67,7 +59,7 @@ describe ArgGen do
       arggen = ArgGen.new
       
       result = arggen.gen_key('53351')
-      expected = 53351
+      expected = '53351'
       
       assert_equal(expected, result)
     end
@@ -83,6 +75,28 @@ describe ArgGen do
       end
     end
     
+  end
+  describe ".gen_date" do
+    it "returns current date if no date is given" do
+      arggen = ArgGen.new
+      dategen = DateGen.new
+      result = arggen.gen_date(nil)
+      expected = dategen.gen
+      
+      assert_equal(expected, result)
+      
+      
+    end
+    
+    it  "returns date if valid date is given" do
+      arggen = ArgGen.new
+      
+      expected = '090909'
+      result = arggen.gen_date("090909")
+      
+      assert_equal(expected, result)
+      
+    end
   end
 
 end

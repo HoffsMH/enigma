@@ -1,23 +1,38 @@
 require "./lib/loader.rb"
 require "./lib/keygen.rb"
 require "./lib/arggen.rb"
+require "./lib/argchecker"
 
 
 
 class Encryptor
   attr_accessor :message, :key, :date, :keygen
   def initialize     
-    @arggen = ArgGen.new
+    @argchecker = ArgChecker.new
+    @arggen = ArgGen.new     
   end
   def encrypt
-    message = @arggen.gen_message(ARGV[0])
-    output = @arggen.gen_output(ARGV[1])
-    gen_key = @arggen.gen_key(ARGV[2])
-    date = @arggen.gen_date(ARGV[3])
-    args_status = @arggen.check_args(messsage, output)
+    @message = @arggen.gen_message(ARGV[0])
+    @output = @arggen.gen_output(ARGV[1])
+    @key = @arggen.gen_key(ARGV[2])
+    @date = @arggen.gen_date(ARGV[3])
+    args_status = @argchecker.check_io(@messsage, @output, @key, @date)
+    @key = @argchecker.check_key(@key)
+    @date = @argchecker.check_date(@date)
+    if !args_status
+      return false
+    else
+      puts "everything looks good..."
+      puts "using message file: #{@message}"
+      puts "using output file: #{@output}"
+      puts "using key: #{@key}"
+      puts "using date: #{@date}"
+      
+    end
   end
-  def check_args
-  end
+  
+  
+  
   
   
   

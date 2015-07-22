@@ -12,11 +12,6 @@ class Loader
     
   end
   def get_output_handle(cli_arg)
-    if File.exist?(cli_arg)
-      return File.open(cli_arg, 'w')
-    else
-      return false
-    end
-    
+      return File.open(cli_arg, 'w')     
   end
 end

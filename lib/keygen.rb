@@ -3,13 +3,11 @@ class KeyGen
     output = rand.to_s[3..digits+2]
   end
   
-  def check_key(digits_str, minlength)
-    digits = digits_str.to_i
-  
-    if digits.to_s.length != minlength
+  def check_key(digits_str, length)   
+    if digits_str.length != length
       false
     else
-      digits
+      digits_str
     end     
   end
 
